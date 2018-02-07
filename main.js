@@ -134,7 +134,7 @@ function View() {
     };
 
     this.display_gg = function () {
-        $('#modal_body').css("background-image", "url(images/dog_fail.gif)");
+        $('#modal_body').css("background-image", "url(images/derp.gif)");
         $("#modal_body").css("display", "block");
         if (!modal.is_muted) {
             modal.sounds['derp'].play();
