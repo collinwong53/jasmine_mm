@@ -18,18 +18,10 @@ function initialize() {
     ];
     //sound files for game
     const sound_object = {
-        // 'images/zeratul.jpg': new Audio("sounds/zeratul_goodjob.mp3"),
-        // 'images/banelings.jpg': new Audio("sounds/banelings.mp3"),
-        // 'images/illidan.jpg': new Audio("sounds/illidan.mp3"),
-        // 'images/cuter_baneling.jpg': new Audio("sounds/baneling_burst.mp3"),
-        // 'images/infestor.jpg': new Audio("sounds/infestor_derp.mp3"),
-        // 'images/sky_zerg.jpg': new Audio("sounds/multalisk.mp3"),
-        // 'images/ultralisk.jpg': new Audio("sounds/ultralisk.mp3"),
-        // 'images/marine.jpg': new Audio("sounds/marine.mp3"),
-        // 'images/zergling.jpg': new Audio("sounds/zergling.mp3"),
-        // "clap": new Audio("sounds/applause.mp3"),
-        // "zerg_lick": new Audio("sounds/zerg_lick.mp3"),
-        // "rage": new Audio('sounds/Zealot_Death.mp3')
+        'clap': new Audio("sounds/applause.mp3"),
+        'match': new Audio("sounds/small_dog.mp3"),
+        'derp': new Audio("sounds/derp.mp3"),
+        'howling': new Audio("sounds/howling.mp3")
     }
     //create game objects
     modal = new Modal(image_array, sound_object);
@@ -142,10 +134,10 @@ function View() {
     };
 
     this.display_gg = function () {
-        $('#modal_body').css("background-image", "url(images/GG.gif)");
+        $('#modal_body').css("background-image", "url(images/dog_fail.gif)");
         $("#modal_body").css("display", "block");
         if (!modal.is_muted) {
-            modal.sounds['rage'].play();
+            modal.sounds['derp'].play();
         }
     } //end display gg
 
@@ -205,9 +197,9 @@ function Controller(images, sounds) {
                 this.first_card_clicked.find('.back').css('display', 'none');
                 this.second_card_clicked.find('.back').css('display', 'none');
                 const image = this.second_card_clicked.find('img').attr('src');
-                // if (!modal.is_muted) {
-                //     modal.sounds[image].play();
-                // }
+                if (!modal.is_muted) {
+                    modal.sounds['match'].play();
+                }
                 this.lock = true;
                 this.toggle_disabled_reset();
                 this.reset_lock = true;
@@ -250,18 +242,18 @@ function Controller(images, sounds) {
             setTimeout(this.reset_cards, 1000);
             this.pair = true;
             if (modal.matches === 9 && modal.accuracy < 70) {
-                $("#modal_body").css("background-image", "url(images/balllicking.gif)");
+                $("#modal_body").css("background-image", "url(images/win.gif)");
                 $("#modal_body").css("display", "block");
-                // if (!modal.is_muted) {
-                //     modal.sounds["zerg_lick"].play();
-                // }
+                if (!modal.is_muted) {
+                    modal.sounds["howling"].play();
+                }
             } //end if
             else if (modal.matches === 9) {
                 $('#modal_body').css("display", "block");
-                $('#modal_body').css('background-image', 'url(images/clapping_zerg.gif)');
-                // if (!modal.is_muted) {
-                //     modal.sounds['clap'].play();
-                // }
+                $('#modal_body').css('background-image', 'url(images/yay.gif)');
+                if (!modal.is_muted) {
+                    modal.sounds['clap'].play();
+                }
             } //end else if
         } //end else
         return;

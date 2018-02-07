@@ -162,7 +162,7 @@ body {
 
 .reset {
     border-radius: 18px;
-    text-shadow: 2px 3px 6px #666666;
+    text-shadow: 2px 3px 6px black;
     border: none;
     font-family: Arial;
     color: white;
